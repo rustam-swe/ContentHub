@@ -6,7 +6,9 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', [ContentController::class, 'index']);
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::get('/authors/create', [AuthorController::class, 'create']);

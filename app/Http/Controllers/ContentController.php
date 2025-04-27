@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class ContentController extends Controller
 {
@@ -12,8 +13,10 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::all();
-        return view('home', ['contents' => $contents]);
+        $contents = Content::with('category')->get();
+
+        return view('content.index', ['contents' => $contents]);
+
     }
 
     /**
@@ -21,7 +24,8 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('content.create', ['categories' => $categories]);
     }
 
     /**
@@ -29,7 +33,13 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = new Content();
+        $content->title = $request->input('title');
+        $content->description = $request->input('description');
+        $content->url = $request->input('url');
+        $content->category_id = $request->input('category_id');
+        $content->save();
+        return redirect('/contents');
     }
 
     /**
@@ -37,7 +47,7 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        //
+        return view('content.show', ['content' => $content]);
     }
 
     /**
@@ -45,7 +55,8 @@ class ContentController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        $categories = Category::all();
+        return view('content.edit', ['content' => $content, 'categories' => $categories]);
     }
 
     /**
@@ -53,7 +64,8 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        $content->update($request->all());
+        return redirect('/contents');
     }
 
     /**
@@ -61,6 +73,7 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        $content->delete();
+        return redirect('/contents');
     }
 }
