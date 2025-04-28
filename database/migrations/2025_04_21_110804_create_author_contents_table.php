@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('author_contents', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('author_id')->constrained('authors')->onDelete('cascade');
             $table->foreignId('content_id')->constrained('contents')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

@@ -21,6 +21,8 @@
                 <th>Description</th>
                 <th>Url</th>
                 <th>Categories</th>
+                <th>Authors</th>
+                <th>Genres</th>
                 <th>O'chirish</th>
                 <th>Tahrirlash</th>
             </tr>
@@ -34,6 +36,16 @@
                 <td><a href="{{$content->url}}" target="_blank">link</a></td>
                 <td>
                     {{ $content->category->name }}
+                </td>
+                <td>
+                    @foreach ($content->authors as $author)
+                        <a href="/authors/{{$author->id}}">{{ $author->name }}</a>
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($content->genres as $genre)
+                        <a href="/genres/{{$genre->id}}">{{ $genre->name }}</a>
+                    @endforeach
                 </td>
                 <td>
                     <form action="/contents/{{ $content->id }}" method="POST">

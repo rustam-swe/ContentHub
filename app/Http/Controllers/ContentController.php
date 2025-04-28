@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use App\Models\Author;
+use App\Models\Genre;
 class ContentController extends Controller
 {
     /**
@@ -13,8 +14,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::with('category')->get();
-
+        $contents = Content::with('category', 'authors', 'genres')->get();
         return view('content.index', ['contents' => $contents]);
 
     }
@@ -25,7 +25,14 @@ class ContentController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('content.create', ['categories' => $categories]);
+        $autohrs = Author::all();
+        $gernes = Genre::all();
+        return view('content.create',
+        [
+            'categories' => $categories,
+            'authors' => $autohrs,
+            'genres' => $gernes
+        ]);
     }
 
     /**
@@ -39,6 +46,14 @@ class ContentController extends Controller
         $content->url = $request->input('url');
         $content->category_id = $request->input('category_id');
         $content->save();
+
+        if ($request->has('author_ids')) {
+            $content->authors()->attach($request->input('author_ids'));
+        }
+
+        if ($request->has('genre_ids')) {
+            $content->genres()->attach($request->input('genre_ids'));
+        }
         return redirect('/contents');
     }
 

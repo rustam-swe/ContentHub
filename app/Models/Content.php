@@ -14,5 +14,15 @@ class Content extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class, 'author_contents');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'content_genres');
+    }
 }
 
