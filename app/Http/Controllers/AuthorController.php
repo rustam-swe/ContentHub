@@ -29,6 +29,7 @@ class AuthorController extends Controller
 
     public function show(Author $author)
     {
+        $author->load('contents');
         return view('author.show', ['author' => $author]);
     }
 

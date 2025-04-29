@@ -24,5 +24,7 @@ class Content extends Model
     {
         return $this->belongsToMany(Genre::class, 'content_genres');
     }
+
+    
 }
 

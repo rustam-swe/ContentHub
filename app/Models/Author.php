@@ -11,4 +11,10 @@ class Author extends Model
     public function autors() {
         return $this->hasMany(Content::class);
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'author_contents');
+    }
+
 }

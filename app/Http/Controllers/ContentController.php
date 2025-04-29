@@ -62,6 +62,7 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
+        $content->load('category', 'authors', 'genres');
         return view('content.show', ['content' => $content]);
     }
 

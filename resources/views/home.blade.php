@@ -7,32 +7,86 @@
     <title>Laravel</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/authors">Authors</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/genres">Genres</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/categories">Categories</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/contents">Contents</a>
-        </li>
-      </ul>
+    <x-header />
+    <div class="container min-vh-100">
+        @yield('content')
     </div>
-  </div>
-</nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <x-footer />
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Authors qo'shish
+            const addAuthorButton = document.getElementById('addAuthorButton');
+            const selectAuthors = document.getElementById('selectAuthors');
+
+            addAuthorButton.addEventListener('click', function() {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'select-wrapper';
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.marginTop = '10px';
+
+                const originalSelect = selectAuthors.querySelector('select');
+                const newSelect = originalSelect.cloneNode(true);
+                newSelect.value = '';
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.innerText = '-';
+                removeBtn.style.marginLeft = '10px';
+                removeBtn.style.padding = '5px 10px';
+                removeBtn.style.backgroundColor = 'red';
+                removeBtn.style.color = 'white';
+                removeBtn.style.border = 'none';
+                removeBtn.style.borderRadius = '5px';
+                removeBtn.style.cursor = 'pointer';
+
+                removeBtn.addEventListener('click', function() {
+                    wrapper.remove();
+                });
+
+                wrapper.appendChild(newSelect);
+                wrapper.appendChild(removeBtn);
+
+                selectAuthors.appendChild(wrapper);
+            });
+
+            // Genres qo'shish
+            const addGenreButton = document.getElementById('addGenreButton');
+            const selectGenres = document.getElementById('selectGenres');
+
+            addGenreButton.addEventListener('click', function() {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'select-wrapper';
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.marginTop = '10px';
+
+                const originalSelect = selectGenres.querySelector('select');
+                const newSelect = originalSelect.cloneNode(true);
+                newSelect.value = '';
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.innerText = '-';
+                removeBtn.style.marginLeft = '10px';
+                removeBtn.style.padding = '5px 10px';
+                removeBtn.style.backgroundColor = 'red';
+                removeBtn.style.color = 'white';
+                removeBtn.style.border = 'none';
+                removeBtn.style.borderRadius = '5px';
+                removeBtn.style.cursor = 'pointer';
+
+                removeBtn.addEventListener('click', function() {
+                    wrapper.remove();
+                });
+
+                wrapper.appendChild(newSelect);
+                wrapper.appendChild(removeBtn);
+
+                selectGenres.appendChild(wrapper);
+            });
+        });
+        </script>
+</html>
