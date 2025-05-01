@@ -8,6 +8,8 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -30,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [ContentController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 Route::resource('authors', AuthorController::class);
 Route::resource('genres', GenreController::class);
 Route::resource('categories', CategoryController::class);

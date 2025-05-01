@@ -1,5 +1,6 @@
 @extends('home')
 @section('content')
+    <h1>Yangi kategoriya qo'shish</h1>
     <form action="/categories" method="POST">
         @csrf
         <div class="mb-3">

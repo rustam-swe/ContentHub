@@ -25,7 +25,7 @@
             <ul class="list-group mb-3">
                 @foreach ($content->authors as $author)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $author->name }}
+                        <a href="/authors/{{$author->id}}">{{ $author->name }}</a>
                         <a href="{{ $author->url }}" class="btn btn-sm btn-outline-info" target="_blank">
                             Profilga o'tish
                         </a>
@@ -36,7 +36,7 @@
             <h5>Janrlar:</h5>
             <ul class="list-group">
                 @foreach ($content->genres as $genre)
-                    <li class="list-group-item">{{ $genre->name }}</li>
+                    <li class="list-group-item"><a href="/genres/{{ $genre->id }}">{{ $genre->name }}</a></li>
                 @endforeach
             </ul>
         </div>
