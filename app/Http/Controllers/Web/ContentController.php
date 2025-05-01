@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Content;
-use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Author;
+use App\Models\Category;
+use App\Models\Content;
 use App\Models\Genre;
+use Illuminate\Http\Request;
+
 class ContentController extends Controller
 {
     /**

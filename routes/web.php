@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\AuthorController;
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\ContentController;
+use App\Http\Controllers\Web\GenreController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\GenreController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
 
 
 Route::get('/', function () {
