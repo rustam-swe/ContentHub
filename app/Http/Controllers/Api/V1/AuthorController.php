@@ -16,9 +16,36 @@ class AuthorController
     /**
      * @OA\Get(
      *     path="/api/authors",
+     *     operationId="getAuthors",
      *     tags={"Authors"},
-     *     summary="Get all authors",
-     *     @OA\Response(response=200, description="List of authors")
+     *     summary="Get list of authors",
+     *     @OA\Parameter(
+     *         name="Accept",
+     *         in="header",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         example="application/json"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="name", type="string"),
+     *                 @OA\Property(property="url", type="string"),
+     *                 @OA\Property(property="created_at", type="string", format="datetime"),
+     *                 @OA\Property(property="updated_at", type="string", format="datetime")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     ),
+     *     security={{"bearerAuth": {}}}
      * )
      */
     public function index()
