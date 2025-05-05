@@ -13,9 +13,18 @@ namespace App\Http\Controllers;
  *         )
  *     ),
  *     @OA\Server(
- *         url="http://localhost:8000",
+ *         url="http://localhost:88",
  *         description="Local dev server"
  *     )
+ * )
+ * @OA\SecurityScheme(
+ *     type="http",
+ *     description="Use bearer token",
+ *     name="Authorization",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="bearerAuth"
  * )
  */
 class SwaggerController {}

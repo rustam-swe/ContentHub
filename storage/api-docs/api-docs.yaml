@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: 'Laravel Swagger API'
+  description: 'Auto-generated Swagger doc for Laravel API'
+  contact:
+    email: dev@example.com
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:88'
+    description: 'Local dev server'
+paths:
+  /api/authors:
+    get:
+      tags:
+        - Authors
+      summary: 'Get list of authors'
+      operationId: getAuthors
+      parameters:
+        -
+          name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+          example: application/json
+      responses:
+        200:
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    url:
+                      type: string
+                    created_at:
+                      type: string
+                      format: datetime
+                    updated_at:
+                      type: string
+                      format: datetime
+                  type: object
+        401:
+          description: Unauthorized
+      security:
+        -
+          bearerAuth: []
+    post:
+      tags:
+        - Authors
+      summary: 'Create a new author'
+      operationId: ff9d12ef46fc5034a0d4adf9d10b6de3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - url
+              properties:
+                name:
+                  type: string
+                  example: 'John Doe'
+                url:
+                  type: string
+                  format: url
+                  example: 'https://example.com'
+              type: object
+      responses:
+        201:
+          description: 'Author created successfully'
+        422:
+          description: 'Validation error'
+  '/api/authors/{id}':
+    get:
+      tags:
+        - Authors
+      summary: 'Get a single author by ID'
+      operationId: 35c1b6d7002827ab95f68425b845db97
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Author data'
+        404:
+          description: 'Author not found'
+    put:
+      tags:
+        - Authors
+      summary: 'Update an author'
+      operationId: 8797e8c11aa3838017483c14703f088c
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: 'Updated Name'
+                url:
+                  type: string
+                  format: url
+                  example: 'https://updated-url.com'
+              type: object
+      responses:
+        200:
+          description: 'Author updated'
+        404:
+          description: 'Author not found'
+    delete:
+      tags:
+        - Authors
+      summary: 'Delete an author'
+      operationId: c56695bdfa8aa06b4a00f609c64bdc40
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Author deleted'
+        404:
+          description: 'Author not found'
+  '/api/authors/{id}/contents':
+    get:
+      tags:
+        - Authors
+      summary: 'Get contents by author'
+      operationId: 6f43a283e9d66abdd9f94a62f4925eaf
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'List of contents'
+        404:
+          description: 'Author not found'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: 'Use bearer token'
+      name: Authorization
+      in: header
+      bearerFormat: JWT
+      scheme: bearer
+tags:
+  -
+    name: Authors
+    description: 'Author management endpoints'
