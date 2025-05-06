@@ -7,6 +7,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
+                        <li class="nav-item">
+                            @hasanyrole('admin|super-admin')
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                            @endhasanyrole
+                        </li>
                     </ul>
                 </div>
             </div>

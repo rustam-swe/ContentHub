@@ -2,29 +2,27 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1>Kontentlar ro'yxati</h1>
+        <h1>Rolelar ro'yxati</h1>
         @role('admin')
-        <a href="/contents/create" class="btn btn-primary">Yangi kontent qo'shish</a>
+        <a href="/roles/create" class="btn btn-primary">Yangi role qo'shish</a>
         @endrole
     </div>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
+                <th>Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($contents as $content)
+            @foreach ($roles as $role)
             <tr>
-                <td>{{$content->id}}</td>
-                <td><a href="/contents/{{$content->id}}">{{$content->title}}</a></td>
-                <td>{{$content->description}}</td>
+                <td>{{$role->id}}</td>
+                <td><a href="/roles/{{$role->id}}">{{$role->name}}</a></td>
                 <td>
-                    <a href="/contents/{{$content->id}}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/contents/{{$content->id}}" method="POST" style="display:inline;">
+                    <a href="/roles/{{$role->id}}/edit" class="btn btn-warning">Edit</a>
+                    <form action="/roles/{{$role->id}}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

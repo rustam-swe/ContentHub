@@ -81,7 +81,7 @@
                     "Authors"
                 ],
                 "summary": "Create a new author",
-                "operationId": "ff9d12ef46fc5034a0d4adf9d10b6de3",
+                "operationId": "042405e1e579fb4cf0baa000f22b6abf",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -123,7 +123,7 @@
                     "Authors"
                 ],
                 "summary": "Get a single author by ID",
-                "operationId": "35c1b6d7002827ab95f68425b845db97",
+                "operationId": "8c7d66ad55968976cd184f81a309f4e0",
                 "parameters": [
                     {
                         "name": "id",
@@ -148,7 +148,7 @@
                     "Authors"
                 ],
                 "summary": "Update an author",
-                "operationId": "8797e8c11aa3838017483c14703f088c",
+                "operationId": "b49f81314f5c2892813919e590d12fff",
                 "parameters": [
                     {
                         "name": "id",
@@ -194,7 +194,7 @@
                     "Authors"
                 ],
                 "summary": "Delete an author",
-                "operationId": "c56695bdfa8aa06b4a00f609c64bdc40",
+                "operationId": "cc3f38aa7cf6388f1077ec17a67f1c3d",
                 "parameters": [
                     {
                         "name": "id",
@@ -221,7 +221,7 @@
                     "Authors"
                 ],
                 "summary": "Get contents by author",
-                "operationId": "6f43a283e9d66abdd9f94a62f4925eaf",
+                "operationId": "002a1dd84fda38e48e5d3780e5c8b9cb",
                 "parameters": [
                     {
                         "name": "id",

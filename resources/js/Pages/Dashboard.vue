@@ -49,6 +49,21 @@ import { Head } from '@inertiajs/vue3';
         </svg>
         <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-700">Categorylar</h3>
     </a>
+    <!-- Role Card -->
+    <a href="/roles" class="bg-white rounded-2xl shadow hover:shadow-lg transition duration-300 p-6 flex flex-col items-center text-center group">
+        <svg class="w-12 h-12 text-orange-500 group-hover:text-orange-700 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 6v6h6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-orange-700">Rollar</h3>
+    </a>
+    <!-- Permission Card -->
+    <a href="/permissions" class="bg-white rounded-2xl shadow hover:shadow-lg transition duration-300 p-6 flex flex-col items-center text-center group">
+        <svg class="w-12 h-12 text-red-500 group-hover:text-red-700 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-red-700">Permissionlar</h3>
+    </a>
 </div>
 
             </div>
