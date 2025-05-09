@@ -8,7 +8,7 @@ use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;   
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('authors', AuthorController::class);
 Route::resource('genres', GenreController::class);
 Route::resource('categories', CategoryController::class);

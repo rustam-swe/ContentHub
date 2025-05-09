@@ -3,7 +3,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Foydalanuvchilar ro'yxati</h1>
-    {{-- <a href="/authors/create" class="btn btn-primary">Yangi foydalanuvchi qo'shish</a> --}}
+    <a href="/authors/create" class="btn btn-primary">Yangi foydalanuvchi qo'shish</a>
     </div>
     <table class="table table-bordered">
         <thead>

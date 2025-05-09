@@ -13,7 +13,7 @@
                 <th>ID</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Actions</th>
+                <th style="width: 200px;">Actions</th>
             </tr>
         </thead>
         <tbody>

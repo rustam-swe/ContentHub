@@ -3,22 +3,16 @@
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-body">
-            <h1 class="card-title text-primary">{{ $content->title }}</h1>
+            <iframe width="100%" height="600" src="{{ $content->url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h1 class="card-title text-primary"><a href="{{ $content->url }}" target="_blank">{{ $content->title }}</a></h1>
             <p class="text-muted mb-2">
-                <strong>Category:</strong> {{ $content->category->name }} |
+                <strong>Category:</strong><a href="/categories/{{ $content->category_id }}">{{ $content->category->name }}</a>  |
                 <strong>Yaratilgan sana:</strong> {{ $content->created_at->format('Y-m-d H:i') }}
             </p>
 
             <p class="card-text">
                 {{ $content->description }}
             </p>
-
-            <div class="mb-3">
-                <a href="{{ $content->url }}" class="btn btn-outline-primary" target="_blank">
-                    YouTube Videoni Ko‘rish
-                </a>
-            </div>
-
             <hr>
 
             <h5>Mualliflar:</h5>

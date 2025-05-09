@@ -3,7 +3,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Janrlar ro'yxati</h1>
-    {{-- <a href="/genres/create" class="btn btn-primary">Yangi janr qo'shish</a> --}}
+    <a href="/genres/create" class="btn btn-primary">Yangi janr qo'shish</a>
     </div>
     <table class="table table-bordered">
         <thead>
