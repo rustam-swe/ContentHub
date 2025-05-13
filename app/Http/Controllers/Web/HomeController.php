@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Services\ContentController;
 
 class HomeController extends Controller
 {
@@ -11,8 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Get all contents with category, genre, and authors
-        $contents = Content::with('category', 'authors', 'genres')->get();
+        $contents = ContentController::index();
         return view('pages.home.index', compact('contents'));
     }
 
