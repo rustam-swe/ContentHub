@@ -10,19 +10,6 @@ services:
             - db
         networks:
             - content-hub
-    node:
-        image: node:18
-        container_name: content-hub-node
-        working_dir: /var/www
-        volumes:
-            - .:/var/www
-        command: sh -c "npm install && npm run dev"
-        networks:
-            - content-hub
-        ports:
-            - "5173:5173" # Vite server uchun
-        environment:
-            - HOST=0.0.0.0
     db:
         image: postgres:15
         container_name: content-hub-db
