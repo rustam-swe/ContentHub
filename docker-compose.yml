@@ -3,7 +3,7 @@ services:
         build:
             context: docker
             dockerfile: Dockerfile
-        container_name: content-hub-app
+        container_name: abduvoris-content-hub-app
         volumes:
             - .:/var/www
         depends_on:
@@ -12,7 +12,7 @@ services:
             - content-hub
     db:
         image: postgres:15
-        container_name: content-hub-db
+        container_name: abduvoris-content-hub-db
         environment:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_USER: ${DB_USERNAME}
@@ -26,7 +26,7 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: content-hub-nginx
+        container_name: abduvoris-content-hub-nginx
         ports:
             - "88:80"
         volumes:
