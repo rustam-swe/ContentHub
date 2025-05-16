@@ -23,9 +23,9 @@ jobs:
 
       - name: 🚀 Deploy via SSH
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            cd ${{ secrets.PROJECT_PATH }}
-            git pull
+          ssh root@185.191.141.44 << 'EOF'
+            cd /var/www/Useful-contents-library/
+            git pull origin main
             docker exec abduvoris-content-hub-app composer install --no-interaction --prefer-dist --optimize-autoloader
             docker exec abduvoris-content-hub-app php artisan config:clear
             docker exec abduvoris-content-hub-app php artisan route:clear
