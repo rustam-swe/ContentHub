@@ -20,7 +20,7 @@
                 <td><a href="/categories/{{$category->id}}">{{ $category->name }}</a></td>
                 <td>
                     <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/categories/{{ $category->id }}" method="POST" style="display:inline;">
+                    <form action="/categories/{{ $category->id }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">O'chirish</button>

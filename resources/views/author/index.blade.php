@@ -22,7 +22,7 @@
                 <td><a href='{{ $author->url }}' target="_blank">link</a></td>
                 <td>
                     <a href="/authors/{{ $author->id }}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/authors/{{ $author->id }}" method="POST" style="display:inline;">
+                    <form action="/authors/{{ $author->id }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">O'chirish</button>

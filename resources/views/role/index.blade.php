@@ -22,7 +22,7 @@
                 <td><a href="/roles/{{$role->id}}">{{$role->name}}</a></td>
                 <td>
                     <a href="/roles/{{$role->id}}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/roles/{{$role->id}}" method="POST" style="display:inline;">
+                    <form action="/roles/{{$role->id}}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

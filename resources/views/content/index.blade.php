@@ -24,7 +24,7 @@
                 <td>{{$content->description}}</td>
                 <td>
                     <a href="/contents/{{$content->id}}/edit" class="btn btn-warning">Edit</a>
-                    <form action="/contents/{{$content->id}}" method="POST" style="display:inline;">
+                    <form action="/contents/{{$content->id}}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
