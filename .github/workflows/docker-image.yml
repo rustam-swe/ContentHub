@@ -26,13 +26,6 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd ${{ secrets.PROJECT_PATH }}
             git pull origin main
-            php artisan down || true
             composer install --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force
-            php artisan config:clear
-            php artisan cache:clear
-            php artisan route:clear
-            php artisan view:clear
-            php artisan config:cache
-            php artisan up
+            docker exec abduvoris-content-hub-app php artisan optimize
           EOF
