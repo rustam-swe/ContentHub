@@ -9,7 +9,7 @@ services:
         depends_on:
             - db
         networks:
-            - content-hub
+            - content-hub-abduvoris
     db:
         image: postgres:15
         container_name: abduvoris-content-hub-db
@@ -22,7 +22,7 @@ services:
         volumes:
             - pgdata:/var/lib/postgresql/data
         networks:
-            - content-hub
+            - content-hub-abduvoris
 
     nginx:
         image: nginx:alpine
@@ -35,10 +35,10 @@ services:
         depends_on:
             - app
         networks:
-            - content-hub
+            - content-hub-abduvoris
 
 volumes:
     pgdata:
 
 networks:
-    content-hub:
+    content-hub-abduvoris:
