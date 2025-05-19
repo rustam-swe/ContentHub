@@ -15,7 +15,7 @@ class AuthorController
 {
     /**
      * @OA\Get(
-     *     path="/api/authors",
+     *     path="/api/v1/authors",
      *     operationId="getAuthors",
      *     tags={"Authors"},
      *     summary="Get list of authors",

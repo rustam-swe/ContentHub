@@ -15,7 +15,7 @@
         }
     ],
     "paths": {
-        "/api/authors": {
+        "/api/v1/authors": {
             "get": {
                 "tags": [
                     "Authors"
@@ -75,7 +75,9 @@
                         "bearerAuth": []
                     }
                 ]
-            },
+            }
+        },
+        "/api/authors": {
             "post": {
                 "tags": [
                     "Authors"
