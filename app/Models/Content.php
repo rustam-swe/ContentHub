@@ -9,7 +9,6 @@ class Content extends Model
 {
     use HasFactory;
     protected $fillable = [ 'title', 'description', 'url', 'category_id' ];
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -25,6 +24,6 @@ class Content extends Model
         return $this->belongsToMany(Genre::class, 'content_genres');
     }
 
-    
+
 }
 

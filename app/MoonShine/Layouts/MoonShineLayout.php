@@ -30,6 +30,11 @@ use MoonShine\UI\Components\{Breadcrumbs,
     Layout\TopBar,
     Layout\Wrapper,
     When};
+use App\MoonShine\Resources\GenreResource;
+use MoonShine\MenuManager\MenuItem;
+use App\MoonShine\Resources\CategoryResource;
+use App\MoonShine\Resources\AuthorResource;
+use App\MoonShine\Resources\ContentResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -44,6 +49,10 @@ final class MoonShineLayout extends AppLayout
     {
         return [
             ...parent::menu(),
+            MenuItem::make('Genres', GenreResource::class),
+            MenuItem::make('Categories', CategoryResource::class),
+            MenuItem::make('Authors', AuthorResource::class),
+            MenuItem::make('Contents', ContentResource::class),
         ];
     }
 

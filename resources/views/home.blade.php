@@ -8,7 +8,7 @@
 </head>
 <body>
     <x-header />
-    <div class="container min-vh-100">
+    <div class="container min-vh-100 my-3">
         @yield('content')
     </div>
     <x-footer />

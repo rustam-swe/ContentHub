@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Services\ContentController;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -12,8 +13,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $contents = ContentController::index();
-        return view('pages.home.index', compact('contents'));
+        // $contents = ContentController::index();
+        $categories = Category::with(['contents' => function ($query) {
+            $query->inRandomOrder()->take(4);
+        }])->get();
+        return view('pages.home.index', compact('categories'));
     }
 
     /**
