@@ -8,8 +8,6 @@ use MoonShine\Laravel\Layouts\AppLayout;
 use MoonShine\ColorManager\ColorManager;
 use MoonShine\Contracts\ColorManager\ColorManagerContract;
 use MoonShine\Laravel\Components\Layout\{Locales, Notifications, Profile, Search};
-use MoonShine\MenuManager\MenuGroup;
-use MoonShine\MenuManager\MenuItem;
 use MoonShine\UI\Components\{Breadcrumbs,
     Components,
     Layout\Flash,
@@ -46,15 +44,12 @@ final class MoonShineLayout extends AppLayout
     {
         return [
             ...parent::menu(),
-            MenuGroup::make('Main', [
-                MenuItem::make('Dashboard', 'http://example.com')->icon('home'),
-            ]),
         ];
     }
 
     /**
      * @param ColorManager $colorManager
-    */
+     */
     protected function colors(ColorManagerContract $colorManager): void
     {
         parent::colors($colorManager);
