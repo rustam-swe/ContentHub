@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container mt-4">
+        @if ($message = session('message'))
+            <div id="alert-message" class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="card shadow">
             <div class="d-flex card-body">
                 <div class="p-4 w-60">
@@ -22,8 +28,13 @@
                     </p>
 
                     <div class="mb-3">
-                        <button class="btn btn-outline-secondary">Saqlash</button>
-                        <button class="btn btn-outline-primary">Like</button>
+                        <form action="/contents/{{ $content->id }}/like" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">
+                                ❤️ Like ({{ $content->likedUsers()->count() }})
+                            </button>
+                        </form>
+
                     </div>
 
                     <p class="card-text">{{ $content->description }}</p>
@@ -56,9 +67,12 @@
                     <h5 class="mt-3">O'xshash contentlar</h5>
                     <ul class="list-group">
                         @foreach ($releatedContents as $releatedContent)
-                            <li class="list-group-item d-flex align-items-center p-0 overflow-hidden rounded border mb-2 pe-2">
-                                <img src="https://picsum.photos/640/360" class="me-3" width="80" height="80" alt="Random image">
-                                <a class="d-block" href="/contents/{{ $releatedContent->id }}">{{ $releatedContent->title }}</a>
+                            <li
+                                class="list-group-item d-flex align-items-center p-0 overflow-hidden rounded border mb-2 pe-2">
+                                <img src="https://picsum.photos/640/360" class="me-3" width="80" height="80"
+                                    alt="Random image">
+                                <a class="d-block"
+                                    href="/contents/{{ $releatedContent->id }}">{{ $releatedContent->title }}</a>
                         @endforeach
                     </ul>
                 </div>
@@ -66,3 +80,14 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        setTimeout(function() {
+            var alert = document.getElementById('alert-message');
+            if (alert) {
+                var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                bsAlert.close();
+            }
+        }, 4000); // 4 sekunddan keyin yopiladi
+    </script>
+@endpush

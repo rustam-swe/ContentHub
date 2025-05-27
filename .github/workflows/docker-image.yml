@@ -33,4 +33,5 @@ jobs:
             docker exec abduvoris-content-hub-app php artisan cache:clear
             docker exec abduvoris-content-hub-app php artisan config:cache
             docker exec abduvoris-content-hub-app php artisan optimize
+            docker exec abduvoris-content-hub-app php artisan migrate --force
           EOF
