@@ -43,7 +43,7 @@ Route::resource('contents', ContentController::class);
 Route::resource('roles', RoleController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/contents/{id}/like', [LikeController::class, 'toggle'])->name('contents.like');
+    Route::post('/contents/{id}/like', [LikeController::class, 'toggle'])->name('contents.like');
     Route::post('/contents/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
