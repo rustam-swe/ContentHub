@@ -34,4 +34,9 @@ class Content extends Model
     {
         return $this->likedUsers()->count();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

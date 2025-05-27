@@ -1,6 +1,9 @@
 @extends('home')
 
 @section('content')
+    @php
+        $liked = auth()->check() && $content->likedUsers->contains(auth()->id());
+    @endphp
     <div class="container mt-4">
         @if ($message = session('message'))
             <div id="alert-message" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,14 +33,49 @@
                     <div class="mb-3">
                         <form action="/contents/{{ $content->id }}/like" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-outline-danger">
-                                ❤️ Like ({{ $content->likedUsers()->count() }})
+                            <button type="submit" class="btn {{ $liked ? 'btn-outline-danger' : 'btn-outline-secondary' }}">
+                                {{ $liked ? '❤️' : '🩶' }} Like ({{ $content->likedUsers->count() }})
                             </button>
                         </form>
-
                     </div>
 
                     <p class="card-text">{{ $content->description }}</p>
+
+                    <h4 class="border-bottom pb-1 mb-4">Comments</h4>
+
+                    @foreach ($content->comments as $comment)
+                        <div class="mb-2 pb-2">
+                            <div class="mb-1 d-flex justify-content-between">
+
+                                <div class="mb-1">
+                                    <strong>{{ $comment->user->name }}</strong>
+                                    <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                                @if ($comment->user_id === auth()->id())
+                                    <form action="/comments/{{ $comment->id }}" method="POST"
+                                        onsubmit="return confirm('Are you sure?')" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                @endif
+                            </div>
+                            <p class="border rounded px-3 py-2">{{ $comment->body }}</p>
+                        </div>
+                    @endforeach
+
+                    @auth
+                        <form action="/contents/{{ $content->id }}/comments" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <textarea name="body" rows="3" class="form-control" placeholder="Write a comment..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                        </form>
+                    @else
+                        <p><a href="{{ route('login') }}">Log in</a> to comment.</p>
+                    @endauth
+
                 </div>
                 <div class="p-4 w-30 border rounded">
 
