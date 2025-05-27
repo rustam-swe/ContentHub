@@ -3,28 +3,15 @@
 namespace App\Http\Controllers;
 
 /**
- * @OA\OpenApi(
- *     @OA\Info(
- *         title="Laravel Swagger API",
- *         version="1.0.0",
- *         description="Auto-generated Swagger doc for Laravel API",
- *         @OA\Contact(
- *             email="dev@example.com"
- *         )
- *     ),
- *     @OA\Server(
- *         url="http://localhost:88",
- *         description="Local dev server"
- *     )
+ * @OA\Info(
+ *     title="Moonshine Content API",
+ *     version="1.0.0",
+ *     description="Documentation for your production API running on http://185.191.141.44:88"
  * )
- * @OA\SecurityScheme(
- *     type="http",
- *     description="Use bearer token",
- *     name="Authorization",
- *     in="header",
- *     scheme="bearer",
- *     bearerFormat="JWT",
- *     securityScheme="bearerAuth"
+ *
+ * @OA\Server(
+ *     url="http://185.191.141.44:88",
+ *     description="Production Server"
  * )
  */
 class SwaggerController {}

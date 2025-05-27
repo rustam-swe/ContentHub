@@ -1,17 +1,14 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Laravel Swagger API",
-        "description": "Auto-generated Swagger doc for Laravel API",
-        "contact": {
-            "email": "dev@example.com"
-        },
+        "title": "Moonshine Content API",
+        "description": "Documentation for your production API running on http://185.191.141.44:88",
         "version": "1.0.0"
     },
     "servers": [
         {
-            "url": "http://localhost:88",
-            "description": "Local dev server"
+            "url": "http://185.191.141.44:88",
+            "description": "Production Server"
         }
     ],
     "paths": {
@@ -242,18 +239,6 @@
                         "description": "Author not found"
                     }
                 }
-            }
-        }
-    },
-    "components": {
-        "securitySchemes": {
-            "bearerAuth": {
-                "type": "http",
-                "description": "Use bearer token",
-                "name": "Authorization",
-                "in": "header",
-                "bearerFormat": "JWT",
-                "scheme": "bearer"
             }
         }
     },
