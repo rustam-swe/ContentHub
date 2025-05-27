@@ -13,7 +13,7 @@
         @endif
         <div class="card shadow">
             <div class="d-flex card-body">
-                <div class="p-4 w-60">
+                <div class="p-4" style="min-width: 70%;">
                     <h1 class="mb-3 text-primary">
                         <a href="{{ $content->url }}" target="_blank">{{ $content->title }}</a>
                     </h1>
@@ -77,7 +77,7 @@
                     @endauth
 
                 </div>
-                <div class="p-4 w-30 border rounded">
+                <div class="p-4 border rounded" style="min-width: 30%;">
 
                     <h5>Janrlar:</h5>
                     <ul class="list-group">
