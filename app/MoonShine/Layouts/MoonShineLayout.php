@@ -49,10 +49,10 @@ final class MoonShineLayout extends AppLayout
     {
         return [
             ...parent::menu(),
-            MenuItem::make('Genres', GenreResource::class),
-            MenuItem::make('Categories', CategoryResource::class),
-            MenuItem::make('Authors', AuthorResource::class),
-            MenuItem::make('Contents', ContentResource::class),
+            MenuItem::make('Authors', AuthorResource::class)->icon('user'),
+            MenuItem::make('Categories', CategoryResource::class)->icon('folder'),
+            MenuItem::make('Genres', GenreResource::class)->icon('film'),
+            MenuItem::make('Contents', ContentResource::class)->icon('book-open'),
         ];
     }
 

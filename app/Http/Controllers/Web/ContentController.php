@@ -64,7 +64,13 @@ class ContentController extends Controller
     public function show(Content $content)
     {
         $content->load('category', 'authors', 'genres');
-        return view('content.show', ['content' => $content]);
+
+        $releatedContents = Content::where('category_id', $content->category_id)
+            ->where('id', '!=', $content->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+        return view('content.show', compact('content', 'releatedContents'));
     }
 
     /**

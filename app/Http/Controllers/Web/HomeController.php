@@ -8,15 +8,14 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // $contents = ContentController::index();
         $categories = Category::with(['contents' => function ($query) {
             $query->inRandomOrder()->take(4);
-        }])->get();
+        }])->get()
+        ->filter(function ($category) {
+            return $category->contents->isNotEmpty();
+        });
         return view('pages.home.index', compact('categories'));
     }
 

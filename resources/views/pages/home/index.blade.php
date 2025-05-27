@@ -3,15 +3,15 @@
 @section('content')
     <div class="container">
 
-        <div id="contentCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="contentCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @php $activeSet = false; @endphp
                 @foreach ($categories as $category)
                     @foreach ($category['contents'] as $content)
                         <div class="carousel-item {{ !$activeSet ? 'active' : '' }}">
                             @php $activeSet = true; @endphp
-                            <div class="card h-100 shadow-sm kitob-card mx-auto" style="max-width: 600px;">
-                                <img src="https://picsum.photos/640/360" class="img-fluid rounded-top" alt="Random image">
+                            <div class="card h-100 shadow-sm kitob-card mx-auto" style="">
+                                <img src="https://picsum.photos/640/360" class="rounded-top" alt="Random image">
                                 {{-- <iframe class="w-100" height="315" src="{{ $content['url'] }}" title="YouTube video player"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

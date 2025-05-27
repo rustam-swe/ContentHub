@@ -8,8 +8,11 @@ use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Resources\ModelResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsToMany;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Text;
+use App\MoonShine\Resources\AuthorResource;
+use App\MoonShine\Resources\GenreResource;
 use Throwable;
 
 
@@ -28,7 +31,8 @@ class ContentFormPage extends FormPage
             Text::make('Title', 'title'),
             Text::make('Description', 'description'),
             Text::make('Url', 'url'),
-
+            BelongsToMany::make('Authors', 'authors', AuthorResource::class),
+            BelongsToMany::make('Genres', 'genres', GenreResource::class),
         ];
     }
 
