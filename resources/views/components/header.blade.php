@@ -1,21 +1,26 @@
-<header class="bg-body-tertiary">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-between collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            @hasanyrole('admin|super-admin')
-                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-                            @endhasanyrole
-                        </li>
-                    </ul>
-                    <a class="btn btn-primary" href="/login">Login</a>
-                </div>
+<header class="bg-[#0f0f0fcc] backdrop-blur-[48px] fixed top-0 w-full z-10 text-white shadow">
+    <div class="flex items-center justify-between px-4 h-16">
+        <div class="flex items-center space-x-4">
+            <a href="/" class="flex items-center space-x-1 text-white font-bold text-2xl tracking-tight">
+                Content Hub
+            </a>
+
+        </div>
+        <div class="hidden md:flex flex-1 mx-4 max-w-2xl">
+            <div class="flex w-full bg-[#0f0f0f] border border-[#303030] rounded-full overflow-hidden">
+                <input type="text" placeholder="Введите запрос"
+                    class="flex-1 px-4 py-2 bg-[#0f0f0f] rounded-l-full text-sm text-white placeholder:text-[#aaa] focus:outline-none" />
+                <button class="flex items-center justify-center w-14 bg-[#222] hover:bg-[#333]">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 2a8 8 0 105.293 14.293l4.707 4.707-1.414 1.414-4.707-4.707A8 8 0 0010 2z" />
+                    </svg>
+                </button>
             </div>
-        </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="/login" class="px-4 py-1 bg-red-600 hover:bg-red-700 text-white rounded-full">
+                Login
+            </a>
+        </div>
     </div>
 </header>
