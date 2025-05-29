@@ -43,42 +43,39 @@
         </div> --}}
 
 
-        @foreach ($categories as $category)
-            <div class="mb-10">
-                <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
-                    <a href="/categories/{{ $category->id }}" class="hover:underline">
-                        {{ $category->name }}
+        @if ($contents->isEmpty())
+            <p class="text-white">Hech qanday content topilmadi.</p>
+        @else
+            <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                @foreach ($contents as $content)
+                    <a href="/contents/{{ $content->id }}"
+                        class="block bg-[#181818] rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:rounded-none transition-shadow duration-300">
+                        <div class="w-full aspect-video relative">
+                            <img src="https://bmw.scene7.com/is/image/BMW/g90_driving-dynamics_fb?qlt=80&wid=1024&fmt=webp"
+                                alt="Image" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-4 text-white flex flex-col">
+                            <h3 class="text-base font-semibold truncate mb-1">
+                                {!! $content->title !!}
+                            </h3>
+                            <p class="text-xs text-gray-400 truncate mb-1">
+                                @foreach ($content->authors as $author)
+                                    <span class="hover:text-white underline">
+                                        {{ $author->name }}
+                                    </span>{{ !$loop->last ? ', ' : '' }}
+                                @endforeach
+                            </p>
+                            <p class="text-xs text-gray-400">
+                                {{ $content->category->name }} &middot; {{ $content->created_at->diffForHumans() }}
+                            </p>
+                        </div>
                     </a>
-                </h2>
-
-                <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    @foreach ($category->contents as $content)
-                        <a href="/contents/{{ $content->id }}"
-                            class="block bg-[#181818] rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:rounded-none transition-shadow duration-300">
-                            <div class="w-full aspect-video relative">
-                                <img src="https://bmw.scene7.com/is/image/BMW/g90_driving-dynamics_fb?qlt=80&wid=1024&fmt=webp"
-                                    alt="Image" class="w-full h-full object-cover" />
-                            </div>
-                            <div class="p-4 text-white flex flex-col">
-                                <h3 class="text-base font-semibold truncate mb-1">
-                                    {!! $content->title !!}
-                                </h3>
-                                <p class="text-xs text-gray-400 truncate mb-1">
-                                    @foreach ($content->authors as $author)
-                                        <span class="hover:text-white">
-                                            {{ $author->name }}
-                                        </span>{{ !$loop->last ? ', ' : '' }}
-                                    @endforeach
-                                </p>
-                                <p class="text-xs text-gray-400">
-                                    &middot; {{ $content->created_at->diffForHumans() }}
-                                </p>
-                            </div>
-                        </a>
-                    @endforeach
+                @endforeach
+                <div class="mt-4 col-span-full">
+                    {{ $contents->onEachSide(1)->links('vendor.pagination.custom-tailwind') }}
                 </div>
-            </div>
-        @endforeach
 
+            </div>
+        @endif
     </div>
 @endsection

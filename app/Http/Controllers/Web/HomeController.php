@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Web;
+
 use App\Models\Content;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Services\ContentController;
@@ -8,16 +9,26 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $categories = Category::with(['contents' => function ($query) {
-            $query->inRandomOrder()->take(4);
-        }])->get()
-        ->filter(function ($category) {
-            return $category->contents->isNotEmpty();
+public function index(Request $request)
+{
+    $filter = $request->query('category');
+
+    $contentsQuery = Content::with(['category', 'authors']);
+
+    if ($filter && strtolower($filter) !== 'all') {
+        $contentsQuery->whereHas('category', function ($query) use ($filter) {
+            $query->where('name', 'LIKE', '%' . $filter . '%');
         });
-        return view('pages.home.index', compact('categories'));
     }
+
+    $contents = $contentsQuery->latest()->paginate(20)->withQueryString();
+
+    return view('pages.home.index', compact('contents', 'filter'));
+}
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

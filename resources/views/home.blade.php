@@ -12,7 +12,7 @@
     <title>Laravel</title>
 </head>
 
-<body class="bg-black text-white pt-[56px]">
+<body class="bg-black text-white pt-[108px]">
     <x-header />
     <div class="container min-vh-100 my-3">
         @yield('content')
