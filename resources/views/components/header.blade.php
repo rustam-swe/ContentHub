@@ -23,4 +23,21 @@
             </a>
         </div>
     </div>
+    <div class="container">
+        <div class="flex space-x-3 px-4 py-2 overflow-x-auto scrollbar-hide">
+            <a href="{{ url()->current() }}?category=all" class="whitespace-nowrap px-4 py-1 rounded-full text-sm font-medium bg-[#272727] hover:bg-[#ffffff40] hover:text-[#272727] transition
+                    {{ request('category') === "all" ? 'bg-white text-black' : 'bg-[#272727] text-white hover:bg-white hover:text-black' }}
+                    ">
+                All
+            </a>
+            @foreach ($categories as $cat)
+                <a href="{{ url()->current() }}?category={{ $cat->name }}"
+                    class="whitespace-nowrap px-4 py-1 rounded-full text-sm font-medium bg-[#272727] hover:bg-[#ffffff40] hover:text-[#272727] transition
+                    {{ request('category') === $cat->name ? 'bg-white text-black' : 'bg-[#272727] text-white hover:bg-white hover:text-black' }}
+                    ">
+                    {{ $cat->name }}
+                </a>
+            @endforeach
+        </div>
+    </div>
 </header>
