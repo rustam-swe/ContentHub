@@ -20,6 +20,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-docker-compose.dev.yml
-/docker/Dockerfile.dev
 .env.testing
