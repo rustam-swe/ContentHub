@@ -10,3 +10,4 @@
         <button type="submit" class="btn btn-primary">Saqlash</button>
     </form>
 @endsection
+
