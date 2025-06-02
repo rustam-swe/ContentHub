@@ -2,79 +2,33 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Content;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Services\ContentController;
 use App\Models\Category;
 
 class HomeController extends Controller
 {
 public function index(Request $request)
-{
-    $filter = $request->query('category');
+    {
+        $filter = $request->query('category');
 
-    $contentsQuery = Content::with(['category', 'authors']);
+        $categoriesQuery = Category::query();
+        if ($filter && strtolower($filter) !== 'all') {
+            $categoriesQuery->where('name', 'LIKE', '%' . $filter);
+            return view('pages.home.index', [
+                'categories' => $categoriesQuery->get(),
+                'filter' => $filter,
+            ]);
+        }
 
-    if ($filter && strtolower($filter) !== 'all') {
-        $contentsQuery->whereHas('category', function ($query) use ($filter) {
-            $query->where('name', 'LIKE', '%' . $filter . '%');
+        $categories = $categoriesQuery->get();
+
+        $categories = $categories->map(function ($category) {
+            $limit = (strtolower($category->name) === 'book') ? 5 : 4;
+            $randomContents = $category->contents()->inRandomOrder()->take($limit)->get();
+            $category->setRelation('contents', $randomContents);
+            return $category;
         });
-    }
 
-    $contents = $contentsQuery->latest()->paginate(20)->withQueryString();
-
-    return view('pages.home.index', compact('contents', 'filter'));
-}
-
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('pages.home.index', compact('categories', 'filter'));
     }
 }

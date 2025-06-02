@@ -1,7 +1,6 @@
 @extends('home')
 
 @section('content')
-    <div>
 
         {{-- <div id="contentCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -41,41 +40,17 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div> --}}
-
-
-        @if ($contents->isEmpty())
-            <p class="text-white">Hech qanday content topilmadi.</p>
-        @else
-            <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                @foreach ($contents as $content)
-                    <a href="/contents/{{ $content->id }}"
-                        class="block bg-[#181818] rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:rounded-none transition-shadow duration-300">
-                        <div class="w-full aspect-video relative">
-                            <img src="https://bmw.scene7.com/is/image/BMW/g90_driving-dynamics_fb?qlt=80&wid=1024&fmt=webp"
-                                alt="Image" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="p-4 text-white flex flex-col">
-                            <h3 class="text-base font-semibold truncate mb-1">
-                                {!! $content->title !!}
-                            </h3>
-                            <p class="text-xs text-gray-400 truncate mb-1">
-                                @foreach ($content->authors as $author)
-                                    <span class="hover:text-white underline">
-                                        {{ $author->name }}
-                                    </span>{{ !$loop->last ? ', ' : '' }}
-                                @endforeach
-                            </p>
-                            <p class="text-xs text-gray-400">
-                                {{ $content->category->name }} &middot; {{ $content->created_at->diffForHumans() }}
-                            </p>
-                        </div>
-                    </a>
-                @endforeach
-                <div class="mt-4 col-span-full">
-                    {{ $contents->onEachSide(1)->links('vendor.pagination.custom-tailwind') }}
-                </div>
-
-            </div>
-        @endif
-    </div>
+        <x-content :categories="$categories" type="book" title="Book" />
+        <x-content :categories="$categories" type="id" title="Id" />
+        <x-content :categories="$categories" type="dolor" title="Dolor" />
+        <x-content :categories="$categories" type="placeat" title="Placeat" />
+        <x-content :categories="$categories" type="dolores" title="Dolores" />
+        <x-content :categories="$categories" type="eius" title="Eius" />
+        <x-content :categories="$categories" type="recusandae" title="Recusandae" />
+        <x-content :categories="$categories" type="aliquam" title="Aliquam" />
+        <x-content :categories="$categories" type="deleniti" title="Deleniti" />
+        <x-content :categories="$categories" type="error" title="Error" />
+        {{-- <div class="mt-4 col-span-full">
+            {{ $contents->onEachSide(1)->links('vendor.pagination.custom-tailwind') }}
+        </div> --}}
 @endsection

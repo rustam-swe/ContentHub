@@ -6,7 +6,15 @@
             </a>
 
         </div>
-        <div class="hidden md:flex flex-1 mx-4 max-w-2xl">
+        <ul>
+            <li class="inline-block">
+                <a href="/" class="px-4 py-2 hover:bg-[#ffffff40] rounded transition">Home</a>
+            </li>
+            <li class="inline-block">
+                <a href="/authors" class="px-4 py-2 hover:bg-[#ffffff40] rounded transition">Authors</a>
+            </li>
+        </ul>
+        {{-- <div class="hidden md:flex flex-1 mx-4 max-w-2xl">
             <div class="flex w-full bg-[#0f0f0f] border border-[#303030] rounded-full overflow-hidden">
                 <input type="text" placeholder="Введите запрос"
                     class="flex-1 px-4 py-2 bg-[#0f0f0f] rounded-l-full text-sm text-white placeholder:text-[#aaa] focus:outline-none" />
@@ -16,28 +24,30 @@
                     </svg>
                 </button>
             </div>
-        </div>
+        </div> --}}
         <div class="flex items-center space-x-4">
             <a href="/login" class="px-4 py-1 bg-red-600 hover:bg-red-700 text-white rounded-full">
                 Login
             </a>
         </div>
     </div>
+    @if (Route::currentRouteName() === 'home' || Route::currentRouteName() === 'content.show')
     <div class="container">
         <div class="flex space-x-3 px-4 py-2 overflow-x-auto scrollbar-hide">
             <a href="{{ url()->current() }}?category=all" class="whitespace-nowrap px-4 py-1 rounded-full text-sm font-medium bg-[#272727] hover:bg-[#ffffff40] hover:text-[#272727] transition
-                    {{ request('category') === "all" ? 'bg-white text-black' : 'bg-[#272727] text-white hover:text-black' }}
-                    ">
+                {{ request('category') === "all" ? 'bg-white text-black' : 'bg-[#272727] text-white hover:text-black' }}
+                ">
                 All
             </a>
             @foreach ($categories as $cat)
-                <a href="{{ url()->current() }}?category={{ $cat->name }}"
-                    class="whitespace-nowrap px-4 py-1 rounded-full text-sm font-medium bg-[#272727] hover:bg-[#ffffff40] hover:text-[#272727] transition
-                    {{ request('category') === $cat->name ? 'bg-white text-black' : 'bg-[#272727] text-white hover:text-black' }}
-                    ">
-                    {{ $cat->name }}
-                </a>
+            <a href="{{ url()->current() }}?category={{ $cat->name }}"
+                class="whitespace-nowrap px-4 py-1 rounded-full text-sm font-medium bg-[#272727] hover:bg-[#ffffff40] hover:text-[#272727] transition
+                {{ request('category') === $cat->name ? 'bg-white text-black' : 'bg-[#272727] text-white hover:text-black' }}
+                ">
+                {{ $cat->name }}
+            </a>
             @endforeach
         </div>
     </div>
+    @endif
 </header>
