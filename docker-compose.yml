@@ -3,16 +3,16 @@ services:
         build:
             context: docker
             dockerfile: Dockerfile
-        container_name: abduvoris-content-hub-app
+        container_name: afifa-content-hub-app
         volumes:
             - .:/var/www
         depends_on:
             - db
         networks:
-            - content-hub-abduvoris
+            - afifa-content-hub
     db:
         image: postgres:15
-        container_name: abduvoris-content-hub-db
+        container_name: afifa-content-hub-db
         environment:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_USER: ${DB_USERNAME}
@@ -22,11 +22,11 @@ services:
         volumes:
             - pgdata:/var/lib/postgresql/data
         networks:
-            - content-hub-abduvoris
+            - afifa-content-hub
 
     nginx:
         image: nginx:alpine
-        container_name: abduvoris-content-hub-nginx
+        container_name: afifa-content-hub-nginx
         ports:
             - "88:80"
         volumes:
@@ -35,10 +35,10 @@ services:
         depends_on:
             - app
         networks:
-            - content-hub-abduvoris
+            - afifa-content-hub
 
 volumes:
     pgdata:
 
 networks:
-    content-hub-abduvoris:
+    afifa-content-hub:
