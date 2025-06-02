@@ -12,6 +12,7 @@ use MoonShine\Laravel\Resources\ModelResource;
 use App\MoonShine\Resources\AuthorResource;
 use App\MoonShine\Resources\GenreResource;
 use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Text;
 use Throwable;
 
@@ -31,6 +32,7 @@ class ContentDetailPage extends DetailPage
             Text::make('Title', 'title'),
             Text::make('Description', 'description'),
             Text::make('Url', 'url'),
+            Image::make('thumbnail', 'url'),
             BelongsToMany::make(
                 'Authors',
                 'authors',

@@ -17,7 +17,6 @@ class ContentController extends Controller
     {
         $contents = Content::with('category', 'authors', 'genres')->get();
         return view('content.index', ['contents' => $contents]);
-
     }
 
     /**
@@ -26,14 +25,14 @@ class ContentController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $autohrs = Author::all();
-        $gernes = Genre::all();
+        $autohrs    = Author::all();
+        $gernes     = Genre::all();
         return view('content.create',
-        [
-            'categories' => $categories,
-            'authors' => $autohrs,
-            'genres' => $gernes
-        ]);
+            [
+                'categories' => $categories,
+                'authors'    => $autohrs,
+                'genres'     => $gernes
+            ]);
     }
 
     /**
@@ -41,10 +40,19 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        $content = new Content();
-        $content->title = $request->input('title');
+        $fileName  = pathinfo($request->file('thumbnail')->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = pathinfo($request->file('thumbnail')->getClientOriginalName(), PATHINFO_EXTENSION);
+        $fileName  = $fileName.'_'.time().'.'.$extension;
+
+        $filePath = $request
+            ->file('thumbnail')
+            ->storeAs('images', $fileName, 'public');
+
+
+        $content              = new Content();
+        $content->title       = $request->input('title');
         $content->description = $request->input('description');
-        $content->url = $request->input('url');
+        $content->url         = $request->input('url') ?? $filePath;
         $content->category_id = $request->input('category_id');
         $content->save();
 
@@ -66,10 +74,10 @@ class ContentController extends Controller
         $content->load('category', 'authors', 'genres');
 
         $releatedContents = Content::where('category_id', $content->category_id)
-            ->where('id', '!=', $content->id)
-            ->inRandomOrder()
-            ->take(3)
-            ->get();
+                                   ->where('id', '!=', $content->id)
+                                   ->inRandomOrder()
+                                   ->take(3)
+                                   ->get();
         return view('content.show', compact('content', 'releatedContents'));
     }
 
