@@ -43,6 +43,7 @@
             <p class="text-white">Hech qanday kategoriya topilmadi.</p>
         @endforelse
     </div>
+
         <x-content :categories="$categories" type="book" title="Book" />
         <x-content :categories="$categories" type="id" title="Id" />
         <x-content :categories="$categories" type="dolor" title="Dolor" />
@@ -53,4 +54,5 @@
         <x-content :categories="$categories" type="aliquam" title="Aliquam" />
         <x-content :categories="$categories" type="deleniti" title="Deleniti" />
         <x-content :categories="$categories" type="error" title="Error" />
+
 @endsection                                                                         
